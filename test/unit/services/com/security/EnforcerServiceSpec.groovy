@@ -4,6 +4,7 @@ import com.security.DomainRole
 import com.security.Role
 import com.security.User
 import com.security.UserRole
+import com.security.Sprocket
 import com.security.EnforcerService
 import com.virtualdogbert.ast.Enforce
 import com.virtualdogbert.ast.EnforcerException
@@ -17,7 +18,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 
-@Mock([Role, User, UserRole, DomainRole])
+@Mock([Role, User, UserRole, DomainRole, Sprocket])
 @TestFor(EnforcerService)
 class EnforcerServiceSpec extends Specification {
 
@@ -85,8 +86,6 @@ class EnforcerServiceSpec extends Specification {
             thrown EnforcerException
     }
     
-
-    /* For these tests you'll have to sub out the Sprocket domain for one that is in your application
     //Testing DomainRoleTrait
     void 'test enforce hasDomainRole("owner", domainObject, testUser)'() {
         when:
@@ -105,7 +104,6 @@ class EnforcerServiceSpec extends Specification {
         then:
             thrown EnforcerException
     }
-    */
 
      //Testing RoleTrait
     void 'test enforce hasRole("ROLE_ADMIN", testUser)'(){
