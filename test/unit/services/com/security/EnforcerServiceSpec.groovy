@@ -19,8 +19,8 @@
 package services.com.security
 
 import com.security.*
-import com.virtualdogbert.ast.Enforce
 import com.virtualdogbert.ast.EnforcerException
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
