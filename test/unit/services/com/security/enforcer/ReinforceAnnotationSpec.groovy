@@ -16,9 +16,9 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package services.com.security
+package services.com.security.enforcer
 
-import com.security.EnforcerService
+import com.security.enforcer.EnforcerService
 import com.virtualdogbert.ast.EnforcerException
 import com.virtualdogbert.ast.Reinforce
 import com.virtualdogbert.ast.ReinforceFilter

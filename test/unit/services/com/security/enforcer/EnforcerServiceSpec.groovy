@@ -16,9 +16,10 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package services.com.security
+package services.com.security.enforcer
 
 import com.security.*
+import com.security.enforcer.*
 import com.virtualdogbert.ast.EnforcerException
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
@@ -28,11 +29,11 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 
-@Mock([Role, User, UserRole, DomainRole])
+@Mock([Role, User, UserRole, DomainRole, Sprocket])
 @TestFor(EnforcerService)
 class EnforcerServiceSpec extends Specification {
 
-    def testUser, testUser2
+    User testUser, testUser2
 
     def setup() {
         def adminRole = new Role('ROLE_ADMIN').save(flush: true, failOnError: true)
@@ -95,7 +96,7 @@ class EnforcerServiceSpec extends Specification {
             thrown EnforcerException
     }
 
-    /* For these tests you'll have to sub out the Sprocket domain for one that is in your application
+
     //Testing DomainRoleTrait
     void 'test enforce hasDomainRole("owner", domainObject, testUser)'() {
         when:
@@ -114,7 +115,7 @@ class EnforcerServiceSpec extends Specification {
         then:
             thrown EnforcerException
     }
-    */
+
 
      //Testing RoleTrait
     void 'test enforce hasRole("ROLE_ADMIN", testUser)'(){

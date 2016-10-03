@@ -16,27 +16,29 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-package com.security
+
+package com.security.enforcer
+
+import com.security.User
 
 /**
- * This is for adding roles at an object level for business rules
+ *  This trait is for the EnforcerService, extending it's capability to enforcing user roles, without the verbosity of calling a service.
  */
-class DomainRole {
-    String role        //The role to apply to the object
-    Long   domainId    //The id of the object
-    String domainName  //The domain name of the object
-    User   user        //The user associated with the permission
-    Date   dateCreated
-    Date   lastUpdated
+trait RoleTrait {
 
-    static constraints = {
-        role inList: ['owner', 'editor', 'viewer']
-        dateCreated nullable: true
-        lastUpdated nullable: true
-    }
+    /**
+     * This method check to see if a user had a given role
+     *
+     * @param role the role/authority to check
+     * @param user the user to check to see if it has a role(defaulted to springSecurityService.currentUser)
+     * @return true if the user does had the role, false otherwise.
+     */
+    boolean hasRole(String role, User user = null){
+        if(!user){
+            return SpringSecurityUtils.ifAllGranted(role)
+        }
 
-    static mapping = {
-        version false
-        cache true
+        role in user.authorities*.authority
+        //role in user.authorities*.authority || role in user.groups.authorities*.authority
     }
 }
